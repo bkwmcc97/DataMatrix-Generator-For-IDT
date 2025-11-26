@@ -6,11 +6,11 @@
 <title>DataMatrix Generator For IDT</title>
 <style>
   :root{
-    --bg:#707070; --card:#66686c; --accent:#51ba5b; --muted:#9ca3af;
+    --bg:#d2d2d2; --card:#66686c; --accent:#51ba5b; --muted:#cdcecf;
   }
   body{
     font-family: Inter, Roboto, system-ui;
-    background:#5f5f5f; color:#e6eef6; margin:0; padding:32px;
+    background:#5f5f5f; color:#ffffff; margin:0; padding:32px;
     display:flex; justify-content:center;
   }
   .container{
@@ -18,7 +18,7 @@
     padding:22px; box-shadow:0 8px 30px rgba(0,0,0,0.4);
   }
   input,textarea{
-    width:100%; padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,0.1);
+    width:95%; padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,0.1);
     background:rgba(255,255,255,0.05); color:#fff; font-size:14px;
   }
   .grid{display:grid; grid-template-columns:1fr 1fr; gap:12px}
@@ -48,41 +48,38 @@
     <div class="push-down">
       <div>
         <label>Lot type (AI 240)</label>
-        <input id="lotType" type="text">
+        <input id="lotType" type="text" placeholder="DF##">
       </div>
 
       <div>
         <label>Expiry date (AI 17)</label>
-        <input id="expiryManual" type="text" placeholder="Optional YYMMDD" maxlength="6" style="margin-top:6px">
+        <input id="expiryManual" type="text" placeholder="YYMMDD" maxlength="6" style="margin-top:6px">
       </div>
 
       <div>
         <label>Lot number (AI 10)</label>
-        <input id="lotNumber" type="text">
+        <input id="lotNumber" type="text" placeholder="Full Lot Number">
       </div>
 
       <div>
         <label>Variable data (AI 21)</label>
-        <input id="variableData" type="text" placeholder="No need to add here">
+        <input id="variableData" type="text" placeholder="No input required in this field">
       </div>
 
       <div class="full">
         <label>Output mode</label><br>
         <label><input type="radio" name="mode" value="human" checked> Human-readable ([F1])</label>
-        <label style="margin-left:20px"><input type="radio" name="mode" value="machine"> Machine-ready (FNC1 byte)</label>
+        <label style="margin-left:3px"><input type="radio" name="mode" value="machine"> Machine-ready (FNC1 byte)</label>
       </div>
 
-      <div class="full" style="margin-top:10px">
-        <button id="generateBtn" class="btn">Generate Payload</button>
-        <button id="copyBtn" class="secondary">Copy</button>
-        <button id="downloadBtn" class="secondary">Download</button>
-        <button id="resetBtn" class="secondary">Reset</button>
+      <div class="full" style="margin-top:30px">
+        <button id="generateBtn" class="btn">Generate Code</button>
       </div>
 
-      <div class="full">
+      <div class="full" style="margin-bottom:30px"> 
     
         <div id="output" class="output">(generated datamatrix code will appear here)</div>
-        <div style="margin-top:20px"></div>
+        <div style="margin-top:30px"></div>
       </div>
     </div>
 

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DataMatrix Generator — IDT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="app">
+
+    <header class="app-header">
+      <div class="header-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+          <rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="3" height="3"/>
+          <rect x="19" y="14" width="2" height="2"/><rect x="14" y="19" width="2" height="2"/>
+          <rect x="18" y="19" width="3" height="2"/>
+        </svg>
+      </div>
+      <div>
+        <h1 class="app-title">DataMatrix Generator</h1>
+        <p class="app-subtitle">GS1 / IDT Label Encoding</p>
+      </div>
+    </header>
+
+    <div class="card">
+      <p class="section-label">Identifiers</p>
+
+      <div class="field-group">
+        <div class="field">
+          <label class="field-label">Lot Type <span class="ai-badge">AI 240</span></label>
+          <input id="lotType" class="field-input" type="text" placeholder="e.g. DF01" autocomplete="off" />
+        </div>
+
+        <div class="field">
+          <label class="field-label">Expiry Date <span class="ai-badge">AI 17</span></label>
+          <input id="expiryManual" class="field-input field-input--mono" type="text" placeholder="YYMMDD" maxlength="6" autocomplete="off" />
+        </div>
+
+        <div class="field">
+          <label class="field-label">Lot Number <span class="ai-badge">AI 10</span></label>
+          <input id="lotNumber" class="field-input" type="text" placeholder="Full lot number" autocomplete="off" />
+        </div>
+
+        <div class="field">
+          <label class="field-label">Variable Data <span class="ai-badge">AI 21</span></label>
+          <input id="variableData" class="field-input" type="text" placeholder="Optional" autocomplete="off" />
+        </div>
+      </div>
+
+      <p class="section-label" style="margin-top:28px">Output Mode</p>
+      <div class="toggle-group">
+        <label class="toggle-option">
+          <input type="radio" name="mode" value="human" checked />
+          <span class="toggle-label">Human-readable <code>[F1]</code></span>
+        </label>
+        <label class="toggle-option">
+          <input type="radio" name="mode" value="machine" />
+          <span class="toggle-label">Machine-ready <code>FNC1</code></span>
+        </label>
+      </div>
+    </div>
+
+    <button id="generateBtn" class="btn-primary">
+      Generate DataMatrix
+    </button>
+
+    <!-- OUTPUT SECTION (hidden until generated) -->
+    <div id="outputSection" class="output-section hidden">
+
+      <div class="card card--output">
+        <p class="section-label">Encoded Payload</p>
+        <div id="payloadDisplay" class="payload-display"></div>
+        <div class="output-actions">
+          <button id="copyBtn" class="btn-ghost">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+            Copy
+          </button>
+          <button id="downloadBtn" class="btn-ghost">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Download
+          </button>
+          <button id="resetBtn" class="btn-ghost btn-ghost--danger">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.46"/>
+            </svg>
+            Reset
+          </button>
+        </div>
+      </div>
+
+      <div class="card card--barcode">
+        <p class="section-label">DataMatrix Preview</p>
+        <p class="section-hint">Scan to verify encoded content</p>
+        <div class="barcode-wrap">
+          <canvas id="barcode"></canvas>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="https://unpkg.com/bwip-js/dist/bwip-js-min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
